@@ -17,7 +17,7 @@ class NamingMojo : AbstractMojo() {
 
     @Throws(MojoExecutionException::class)
     override fun execute() {
-        log.info("Generate Enum from table")
+        log.info("=============================Generate Enum from table==================")
         log.info("Generate to package $generatedPackage")
 
 
