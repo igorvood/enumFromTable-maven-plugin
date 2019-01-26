@@ -1,5 +1,5 @@
 package ru.vood.enumFromTable.processParametrs
 
-interface ProcessParametrInterface {
+interface ProcessParameterInterface {
     fun process(param: Parameters, value: Any)
 }
