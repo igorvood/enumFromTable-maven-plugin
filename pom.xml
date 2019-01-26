@@ -15,17 +15,59 @@
         <java.version>1.8</java.version>
     </properties>
 
-    <parent>
+    <!--<parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.5.RELEASE</version>
     </parent>
+-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>5.0.9.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+            <version>2.1.2.RELEASE</version>
         </dependency>
+
+        <!--driver for connection to database -->
+        <dependency>
+            <groupId>oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.2</version>
+        </dependency>
+
+        <!--
+                <dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context-support</artifactId>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-jdbc</artifactId>
+                </dependency>
+        -->
 
 
         <dependency>
