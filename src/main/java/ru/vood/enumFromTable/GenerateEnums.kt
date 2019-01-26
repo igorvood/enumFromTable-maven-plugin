@@ -7,11 +7,14 @@ import org.apache.maven.plugins.annotations.LifecyclePhase
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
 import org.apache.maven.project.MavenProject
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.io.File
 
 
 @SpringBootApplication
+@EnableAutoConfiguration
 @Mojo(name = "setname", defaultPhase = LifecyclePhase.GENERATE_SOURCES, threadSafe = true)
 open class GenerateEnums : AbstractMojo() {
     @Parameter(property = "generatePackage")
@@ -28,6 +31,10 @@ open class GenerateEnums : AbstractMojo() {
 
     @Throws(MojoExecutionException::class)
     override fun execute() {
+
+        val annotationConfigApplicationContext = AnnotationConfigApplicationContext(GenerateEnums::class.java)
+        println("annotationConfigApplicationContext $annotationConfigApplicationContext")
+
         log.info("=============================Generate Enum from table==================")
         log.info("Generate to package $generatedPackage")
         log.info("Generate to package $propFile")
