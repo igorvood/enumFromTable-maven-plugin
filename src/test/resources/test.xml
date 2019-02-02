@@ -1,0 +1,21 @@
+<!--<plugin>-->
+<groupId>ru.vood.generators</groupId>
+<artifactId>enumFromTable-maven-plugin</artifactId>
+<version>1.0</version>
+<configuration>
+<generatedPackage>ru.vood.generated.enums</generatedPackage>
+<propFile>generate.yaml</propFile>
+<configFile>${project.basedir}\src\main\resources\generate.yaml</configFile>
+
+</configuration>
+        <!--
+            <executions>
+                <execution>
+                    <id>process</id>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>setname</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>-->
