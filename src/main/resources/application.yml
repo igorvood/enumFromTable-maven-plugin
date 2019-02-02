@@ -4,5 +4,7 @@ spring:
     password: vood
     username: vood
     url: jdbc:oracle:thin:@localhost:1521:vood
+  main:
+    banner-mode: off
 
 

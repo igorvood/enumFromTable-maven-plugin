@@ -13,7 +13,7 @@ public class MainRunnable {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public MainRunnable(@Qualifier("jdbcTemplateMy") JdbcTemplate jdbcTemplate) {
+    public MainRunnable(@Qualifier("jdbcTemplate") JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -21,7 +21,7 @@ public class MainRunnable {
     public void run(String prefTable) {
         System.out.println("================jdbcTemplate ->" + jdbcTemplate);
         jdbcTemplate.execute("select * from dual");
-        List<String> query = jdbcTemplate.query("select * from all_tables at1 where at1.table_name like '" + prefTable + "%", (rs, rowNum) -> rs.getString(1));
+        List<String> query = jdbcTemplate.query("select TABLE_NAME from all_tables at1 where at1.table_name like '" + prefTable + "%'", (rs, rowNum) -> rs.getString(1));
         System.out.println("================query ->" + query.size());
     }
 
