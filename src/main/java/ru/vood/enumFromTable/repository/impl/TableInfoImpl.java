@@ -55,4 +55,38 @@ public class TableInfoImpl implements TableInfoInterface {
                         .columnName(rs.getString(2))
                         .build());
     }
+
+    @Override
+    public List<Column> getTablesPKColumns(String prefix) {
+        String sql = "select\n" +
+                "  col.table_name,\n" +
+                "  col.COLUMN_name,\n" +
+                "  col.DATA_TYPE,\n" +
+                "  case when acc.column_name is null\n" +
+                "    then 0\n" +
+                "  else 1 end case\n" +
+                "from user_tab_columns col\n" +
+                "  , (\n" +
+                "      select\n" +
+                "        acc.table_name  as table_name,\n" +
+                "        acc.column_name as column_name\n" +
+                "      from all_constraints ac\n" +
+                "        , all_indexes ai\n" +
+                "        , all_cons_columns acc\n" +
+                "      where ac.constraint_type = 'P'\n" +
+                "            and ai.index_name = ac.index_name\n" +
+                "            and acc.constraint_name = ai.index_name\n" +
+                "\n" +
+                "    ) acc\n" +
+                "where col.table_name like '" + prefix + "%'\n" +
+                "      and col.table_name = acc.table_name (+)\n" +
+                "      and col.COLUMN_name = acc.column_name (+)\n";
+        return jdbcTemplate.query(sql
+                , (rs, rowNum) -> Column.builder()
+                        .tableName(rs.getString(1))
+                        .columnName(rs.getString(2))
+                        .dataType(DataType.getEnum(rs.getString(3)))
+                        .isPKColumn(rs.getString(3).equals('1') ? true : false)
+                        .build());
+    }
 }

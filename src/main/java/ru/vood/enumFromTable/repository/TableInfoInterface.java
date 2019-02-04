@@ -12,4 +12,6 @@ public interface TableInfoInterface {
     List<Column> getTableColumns(String tableName);
 
     List<Index> getTablePKColumns(String tableName);
+
+    List<Column> getTablesPKColumns(String prefix);
 }

@@ -11,4 +11,5 @@ public class Column {
     private final String tableName;
     private final String columnName;
     private final DataType dataType;
+    private final boolean isPKColumn;
 }
