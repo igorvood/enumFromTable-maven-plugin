@@ -1,12 +1,10 @@
 package ru.vood.enumFromTable.generateCode
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
 
 @Component
 class GenCodeCommonFunction(@Autowired
-                            @Qualifier("pluginTunes")
                             var pluginTunes: PluginTunes) {
 
     fun getTableName(dbTableName: String) = (pluginTunes.prefixTable + dbTableName).toUpperCase()
