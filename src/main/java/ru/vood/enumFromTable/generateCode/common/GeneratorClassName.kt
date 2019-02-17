@@ -7,7 +7,6 @@ import ru.vood.enumFromTable.generateCode.TypeOfGeneratedClass
 
 @Component
 @Order(30)
-
 class GeneratorClassName(generatorCodeCommonFunction: GeneratorCodeCommonFunction)
     : AbstractGenerator<Table>(generatorCodeCommonFunction) {
 

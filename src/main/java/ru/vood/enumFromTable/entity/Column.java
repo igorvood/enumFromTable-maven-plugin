@@ -9,10 +9,10 @@ import ru.vood.enumFromTable.enums.DataType;
 @Builder
 @Value
 public class Column implements DataBaseObject {
-    private final String tableName;
-    private final String columnName;
-    private final DataType dataType;
-    private final boolean isPKColumn;
+    public final String tableName;
+    public final String columnName;
+    public final DataType dataType;
+    public final boolean isPKColumn;
 
     @NotNull
     @Override

@@ -11,8 +11,8 @@ import java.util.List;
 @Value
 @Data
 public class Table implements DataBaseObject {
-    private final String tableName;
-    private List<Column> columns;
+    public final String tableName;
+    public final List<Column> columns;
 
     @NotNull
     @Override
