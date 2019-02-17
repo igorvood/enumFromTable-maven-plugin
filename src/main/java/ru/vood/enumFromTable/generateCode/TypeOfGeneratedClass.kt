@@ -1,14 +1,15 @@
 package ru.vood.enumFromTable.generateCode
 
-enum class TypeOfGeneratedClass(val nameClass: String, val comment: String) {
-    GRID_CLASS("Grid", "Таблица"),
-    EDITOR_CLASS("Editor", "Редактор"),
+enum class TypeOfGeneratedClass(val nameClass: String, val comment: String, val classModifierJava: String, val listAnnotation: List<Class<Any>>) {
 
-    ENTITY_CLASS("Entity", "Сущность"),
-    IMPL_CLASS("Impl", "Репозиторий"),
-    SERVICE_CLASS("Service", "Интерфейс"),
-    ENUM_CLASS("Enum", "Перечисление"),
-    REPOSITORY_CLASS("Repository", "Репозиторий");
+    GRID_CLASS("Grid", "Таблица", "public class", arrayListOf()),
+    EDITOR_CLASS("Editor", "Редактор", "public class", arrayListOf()),
+
+    ENTITY_CLASS("Entity", "Сущность", "public class", arrayListOf()),
+    IMPL_CLASS("Impl", "Репозиторий", "public class", arrayListOf()),
+    SERVICE_CLASS("Service", "Интерфейс", "public class", arrayListOf()),
+    ENUM_CLASS("Enum", "Перечисление", "public enum", arrayListOf()),
+    REPOSITORY_CLASS("Repository", "Репозиторий", "public class", arrayListOf());
 
     override fun toString(): String {
         return "$nameClass"

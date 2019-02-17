@@ -6,4 +6,7 @@ import ru.vood.enumFromTable.generateCode.intf.GeneratorPartOfObject
 
 @Component
 abstract class AbstractGenerator<Q : DataBaseObject>(var generatorCodeCommonFunction: GeneratorCodeCommonFunction)
-    : GeneratorPartOfObject<Q>
+    : GeneratorPartOfObject<Q> {
+
+
+}

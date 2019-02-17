@@ -8,24 +8,20 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import ru.vood.enumFromTable.MainConfiguration
-import ru.vood.enumFromTable.generateCode.TypeOfGeneratedClass
 
 @RunWith(SpringJUnit4ClassRunner::class)
 @SpringBootTest(classes = [MainConfiguration::class])
 @ActiveProfiles("application.yml")
-class GeneratorPackageImplTest : AbstractGeneratorTest() {
+class GeneratorClassNameTest : AbstractGeneratorTest() {
 
     @Autowired
-    lateinit var generatorPackageImpl: GeneratorPackageImpl
+    lateinit var generatorClassName: GeneratorClassName
 
     @Test
-    fun genCode() {
-        val valuesGeneratedClass = TypeOfGeneratedClass.values()
-        var genCode: String
-        valuesGeneratedClass.forEach {
-            genCode = generatorPackageImpl.generateCode(table, it)
-            Assert.assertEquals("package ${pluginTunes.packageIn}.${it.nameClass.toLowerCase()};\n\n", genCode)
+    fun generateCode() {
+        valuesTypeOfGeneratedClass.forEach {
+            val generateCode = generatorClassName.generateCode(table, it)
+            Assert.assertEquals("${it.classModifierJava} ${generatorCodeCommonFunction.getClassName(DB_TABLE_NAME, it)}\n", generateCode)
         }
-
     }
 }

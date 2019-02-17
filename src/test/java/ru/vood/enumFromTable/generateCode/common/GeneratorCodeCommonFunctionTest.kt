@@ -3,26 +3,15 @@ package ru.vood.enumFromTable.generateCode.common
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import ru.vood.enumFromTable.MainConfiguration
-import ru.vood.enumFromTable.generateCode.PluginTunes
-import ru.vood.enumFromTable.generateCode.TypeOfGeneratedClass
 
 @RunWith(SpringJUnit4ClassRunner::class)
 @SpringBootTest(classes = [MainConfiguration::class])
 @ActiveProfiles("application.yml")
-class GeneratorCodeCommonFunctionTest {
-
-    val DB_TABLE_NAME = "TABLE_NAME"
-    @Autowired
-    lateinit var generatorCodeCommonFunction: GeneratorCodeCommonFunction
-
-    @Autowired
-    lateinit var pluginTunes: PluginTunes
-
+class GeneratorCodeCommonFunctionTest : AbstractGeneratorTest() {
 
     @Test
     fun getTableName() {
@@ -33,9 +22,8 @@ class GeneratorCodeCommonFunctionTest {
     @Test
     fun getClassName() {
         var tableName: String
-        val values = TypeOfGeneratedClass.values()
         val toCamelCase = generatorCodeCommonFunction.toCamelCase(pluginTunes.prefixTable)
-        values.forEach {
+        valuesTypeOfGeneratedClass.forEach {
             tableName = generatorCodeCommonFunction.getClassName(DB_TABLE_NAME, it)
             Assert.assertEquals("$toCamelCase${generatorCodeCommonFunction.toCamelCase(DB_TABLE_NAME)}${it.nameClass}", tableName)
         }
@@ -44,10 +32,9 @@ class GeneratorCodeCommonFunctionTest {
     @Test
     fun getParameterName() {
         var tableName: String
-        val values = TypeOfGeneratedClass.values()
         var toCamelCase = generatorCodeCommonFunction.toCamelCase(pluginTunes.prefixTable)
         toCamelCase = toCamelCase[0].toLowerCase() + toCamelCase.substring(1)
-        values.forEach {
+        valuesTypeOfGeneratedClass.forEach {
             tableName = generatorCodeCommonFunction.getParameterName(DB_TABLE_NAME, it)
             Assert.assertEquals("$toCamelCase${generatorCodeCommonFunction.toCamelCase(DB_TABLE_NAME)}${it.nameClass}Val", tableName)
             //Assert.assertEquals("${pluginTunes.prefixTable.toUpperCase()}_$DB_TABLE_NAME", tableName)
@@ -57,8 +44,7 @@ class GeneratorCodeCommonFunctionTest {
     @Test
     fun getPackageName() {
         var tableName: String
-        val values = TypeOfGeneratedClass.values()
-        values.forEach {
+        valuesTypeOfGeneratedClass.forEach {
             tableName = generatorCodeCommonFunction.getPackageName(it)
             Assert.assertEquals("${pluginTunes.packageIn}.${it.nameClass.toLowerCase()}", tableName)
         }
@@ -67,8 +53,7 @@ class GeneratorCodeCommonFunctionTest {
     @Test
     fun getFullClassName() {
         var tableName: String
-        val values = TypeOfGeneratedClass.values()
-        values.forEach {
+        valuesTypeOfGeneratedClass.forEach {
             tableName = generatorCodeCommonFunction.getFullClassName(DB_TABLE_NAME, it)
             Assert.assertEquals("${generatorCodeCommonFunction.getPackageName(it)}.${generatorCodeCommonFunction.getClassName(DB_TABLE_NAME, it)}", tableName)
         }
