@@ -7,6 +7,7 @@ enum class TypeOfGeneratedClass(val nameClass: String, val comment: String) {
     ENTITY_CLASS("Entity", "Сущность"),
     IMPL_CLASS("Impl", "Репозиторий"),
     SERVICE_CLASS("Service", "Интерфейс"),
+    ENUM_CLASS("Enum", "Перечисление"),
     REPOSITORY_CLASS("Repository", "Репозиторий");
 
     override fun toString(): String {

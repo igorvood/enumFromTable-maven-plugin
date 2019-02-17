@@ -1,16 +1,18 @@
-package ru.vood.enumFromTable.generateCode
+package ru.vood.enumFromTable.generateCode.common
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import ru.vood.enumFromTable.generateCode.PluginTunes
+import ru.vood.enumFromTable.generateCode.TypeOfGeneratedClass
 
 @Component
-class GenCodeCommonFunction(@Autowired
-                            var pluginTunes: PluginTunes) {
+class GeneratorCodeCommonFunction(@Autowired
+                                  var pluginTunes: PluginTunes) {
 
-    fun getTableName(dbTableName: String) = (pluginTunes.prefixTable + dbTableName).toUpperCase()
+    fun getTableName(dbTableName: String) = (pluginTunes.prefixTable + "_" + dbTableName).toUpperCase()
 
     @JvmOverloads
-    fun getClassName(dbTableName: String, typeOfGeneratedClass: TypeOfGeneratedClass = TypeOfGeneratedClass.ENTITY_CLASS) = toCamelCase(getTableName(dbTableName) + "_" + typeOfGeneratedClass)
+    fun getClassName(dbTableName: String, typeOfGeneratedClass: TypeOfGeneratedClass = TypeOfGeneratedClass.ENTITY_CLASS) = toCamelCase(getTableName(dbTableName)) + toCamelCase(typeOfGeneratedClass.nameClass)
 
 
     @JvmOverloads

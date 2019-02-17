@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component
 class PluginTunes {
     constructor()
 
-    lateinit var packageIn: String
-    lateinit var prefixTable: String
+    var packageIn: String = "ru.vood.test"
+    var prefixTable: String = "prefix_Table"
 
 //    fun get() = this
 }
