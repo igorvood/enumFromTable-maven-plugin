@@ -86,7 +86,7 @@ public class TableInfoImpl implements TableInfoInterface {
                         .tableName(rs.getString(1))
                         .columnName(rs.getString(2))
                         .dataType(DataType.getEnum(rs.getString(3)))
-                        .isPKColumn(rs.getString(3).equals('1') ? true : false)
+                        .isPKColumn(rs.getInt(4) == 1)
                         .build());
     }
 }

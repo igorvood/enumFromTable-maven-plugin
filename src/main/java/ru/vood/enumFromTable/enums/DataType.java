@@ -1,7 +1,12 @@
 package ru.vood.enumFromTable.enums;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 public enum DataType implements CommonEnumInterface<DataType> {
 
+    DATE(Date.class),
+    TIMESTAMP(Timestamp.class),
     NUMBER(Long.class),
     VARCHAR2(String.class);
 

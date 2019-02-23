@@ -1,20 +1,27 @@
 package ru.vood.enumFromTable.entity;
 
 import lombok.Builder;
-import lombok.Data;
-import lombok.Value;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 import java.util.List;
 
 @Builder
-@Value
-@Data
+//@Value
+//@Data
+//@AllArgsConstructor
 public class Table implements DataBaseObject {
+
+    @NonNull
     public final String tableName;
+    @NonNull
     public final List<Column> columns;
 
-    @NotNull
+    public Table(String tableName, List<Column> columns) {
+        this.tableName = tableName;
+        this.columns = columns;
+    }
+
+    @NonNull
     @Override
     public String getName() {
         return tableName;
