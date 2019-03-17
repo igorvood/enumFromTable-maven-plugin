@@ -16,7 +16,7 @@ class ValuesFillerImpl(val jdbcTemplate: JdbcTemplate) : ValuesFiller {
     }
 
     override fun fill(table: Table): Table {
-        jdbcTemplate.queryForList<>()
+        //todo продолжить jdbcTemplate.queryForList<>()
         val queryForMap = jdbcTemplate.queryForMap(buildSelect(table))
 
         println(queryForMap)
