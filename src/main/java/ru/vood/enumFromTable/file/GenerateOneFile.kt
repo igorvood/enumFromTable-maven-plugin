@@ -1,4 +1,4 @@
-package ru.vood.admplugin.infrastructure.generateCode.impl.createFiles
+package ru.vood.enumFromTable.file
 
 import java.nio.charset.Charset
 import java.nio.file.Files
@@ -8,7 +8,6 @@ import java.nio.file.StandardOpenOption
 
 class GenerateOneFile {
 
-    @JvmOverloads
     fun createFile(startPath: Path, packageName: String, fileName: String, fileBody: StringBuilder) {
         val path = Paths.get("${createDirs(startPath, packageName)}\\$fileName")
         Files.write(path, fileBody.lines(), Charset.forName("UTF-8"), StandardOpenOption.CREATE)

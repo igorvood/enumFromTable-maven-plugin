@@ -9,6 +9,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import ru.vood.enumFromTable.jaxb2.PluginParamsXml;
 import ru.vood.enumFromTable.run.MainRunnable;
 
 import java.io.File;
@@ -48,6 +49,10 @@ public class GenerateEnums extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
+
+        PluginParamsXml PluginParamsXml;
+
+
         getLog().info("+++++++++++++++++GenerateEnums++++++++++++++++++++++");
         //ctx = new AnnotationConfigApplicationContext("ru.vood.enumFromTable");
         ctx = new AnnotationConfigApplicationContext(MainConfiguration.class);

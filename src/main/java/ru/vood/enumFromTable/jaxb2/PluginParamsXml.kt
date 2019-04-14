@@ -7,11 +7,7 @@ import javax.xml.bind.JAXBContext
 import javax.xml.bind.JAXBException
 import javax.xml.bind.Marshaller
 
-class PluginParamsXml(var jaxbContext: JAXBContext) {
-
-    init {
-        jaxbContext = JAXBContext.newInstance(PluginTines::class.java)
-    }
+class PluginParamsXml(var jaxbContext: JAXBContext = JAXBContext.newInstance(PluginTines::class.java)) {
 
     fun objToXml(request: PluginTines): String {
         return jaxbElementToXml(request)
